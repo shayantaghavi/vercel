@@ -24,8 +24,7 @@ export default async function handler(req) {
   }
 
   try {
-    // استفاده از URL constructor برای استخراج درست path و query
-    const url = new URL(req.url, "http://placeholder"); // فقط path و query نیاز است
+    const url = new URL(req.url, "http://placeholder");
     const targetUrl = TARGET_BASE + url.pathname + url.search;
 
     const out = new Headers();
