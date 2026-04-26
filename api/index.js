@@ -2,21 +2,7 @@ export const config = { runtime: "edge" };
 
 const TARGET_BASE = (process.env.TARGET_DOMAIN || "").replace(/\/$/, "");
 
-const STRIP_HEADERS = new Set([
-  "host",
-  "connection",
-  "keep-alive",
-  "proxy-authenticate",
-  "proxy-authorization",
-  "te",
-  "trailer",
-  "transfer-encoding",
-  "upgrade",
-  "forwarded",
-  "x-forwarded-host",
-  "x-forwarded-proto",
-  "x-forwarded-port",
-]);
+const STRIP_HEADERS = new Set([ ... ]); // (بدون تغییر)
 
 export default async function handler(req) {
   if (!TARGET_BASE) {
@@ -24,8 +10,7 @@ export default async function handler(req) {
   }
 
   try {
-    // استفاده از URL constructor برای استخراج درست path و query
-    const url = new URL(req.url, "http://placeholder"); // فقط path و query نیاز است
+    const url = new URL(req.url, "http://placeholder");
     const targetUrl = TARGET_BASE + url.pathname + url.search;
 
     const out = new Headers();
