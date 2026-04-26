@@ -24,9 +24,9 @@ export default async function handler(req) {
   }
 
   try {
-    const pathStart = req.url.indexOf("/", 8);
-    const targetUrl =
-      pathStart === -1 ? TARGET_BASE + "/" : TARGET_BASE + req.url.slice(pathStart);
+    // استفاده از URL constructor برای استخراج درست path و query
+    const url = new URL(req.url, "http://placeholder"); // فقط path و query نیاز است
+    const targetUrl = TARGET_BASE + url.pathname + url.search;
 
     const out = new Headers();
     let clientIp = null;
